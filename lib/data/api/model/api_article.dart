@@ -23,6 +23,6 @@ class ApiArticle{
     required this.content
   });
 
-  factory ApiArticle.fromJson(Map<String, dynamic> json) => _$ApirticleFromJson(json);
+  factory ApiArticle.fromJson(Map<String, dynamic> json) => _$ApiArticleFromJson(json);
   Map<String, dynamic> toJson() => _$ApiArticleToJson(this);
 }
