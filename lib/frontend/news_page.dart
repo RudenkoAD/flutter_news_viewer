@@ -58,7 +58,7 @@ class ArticleTile extends StatelessWidget {
     return Material(
       child: GestureDetector(
         child: Card(
-          elevation:6,
+          elevation: 6,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
@@ -73,13 +73,17 @@ class ArticleTile extends StatelessWidget {
             subtitle: Text(article.description, style: textTheme.bodySmall),
           ),
         ),
-        onTap: () {Navigator.pushNamed(context, '/article', arguments: ArticlePageArguments(article: article));},
+        onTap: () {
+          Navigator.pushNamed(context, '/article',
+              arguments: ArticlePageArguments(article: article));
+        },
       ),
     );
   }
 }
 
-class Overlay extends StatelessWidget {//implement buttons to switch pages
+class Overlay extends StatelessWidget {
+  //implement buttons to switch pages
   const Overlay({super.key});
 
   @override

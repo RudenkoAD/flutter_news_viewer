@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_viewer/domain/model/article.dart';
-class ArticlePageArguments{
+
+class ArticlePageArguments {
   final Article article;
   ArticlePageArguments({required this.article});
 }
@@ -9,7 +10,8 @@ class ArticlePage extends StatelessWidget {
   const ArticlePage({super.key});
   @override
   Widget build(BuildContext context) {
-    final ArticlePageArguments arguments = ModalRoute.of(context)!.settings.arguments as ArticlePageArguments;
+    final ArticlePageArguments arguments =
+        ModalRoute.of(context)!.settings.arguments as ArticlePageArguments;
     final Article article = arguments.article;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
@@ -25,7 +27,8 @@ class ArticlePage extends StatelessWidget {
             const SizedBox(height: 16),
             Text(article.title, style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(height: 16),
-            Text(article.description, style: Theme.of(context).textTheme.bodyMedium),
+            Text(article.description,
+                style: Theme.of(context).textTheme.bodyMedium),
           ],
         ),
       ),

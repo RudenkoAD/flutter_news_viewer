@@ -12,15 +12,14 @@ final class PageState extends Equatable {
   final int pageSize;
   final int page;
 
-  const PageState({
-    this.status = PostStatus.initial,
-    this.articles = const <Article>[],
-    this.country = 'ru',
-    this.category,
-    this.q,
-    this.pageSize = 20,
-    this.page = 1
-  });
+  const PageState(
+      {this.status = PostStatus.initial,
+      this.articles = const <Article>[],
+      this.country = 'ru',
+      this.category,
+      this.q,
+      this.pageSize = 20,
+      this.page = 1});
 
   PageState copyWith({
     PostStatus? status,
@@ -32,17 +31,16 @@ final class PageState extends Equatable {
     int? page,
   }) {
     return PageState(
-      status: status ?? this.status,
-      articles: articles ?? this.articles,
-      country: country ?? this.country,
-      category: category ?? this.category,
-      q: q ?? this.q,
-      pageSize: pageSize ?? this.pageSize,
-      page: page ?? this.page
-    );
+        status: status ?? this.status,
+        articles: articles ?? this.articles,
+        country: country ?? this.country,
+        category: category ?? this.category,
+        q: q ?? this.q,
+        pageSize: pageSize ?? this.pageSize,
+        page: page ?? this.page);
   }
 
   @override
-  List<Object?> get props => [status, articles, country, category, q, pageSize, page];
-
+  List<Object?> get props =>
+      [status, articles, country, category, q, pageSize, page];
 }

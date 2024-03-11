@@ -6,27 +6,38 @@ import 'package:equatable/equatable.dart';
 part 'page_state.dart';
 part 'page_event.dart';
 
-
 class PageBloc extends Bloc<PageEvent, PageState> {
   final NewsRepository newsRepository = RepositoryModule.newsRepository();
 
-  PageBloc() : super(const PageState()){
+  PageBloc() : super(const PageState()) {
     on<PageEvent>((event, emit) async {
-      try{
+      try {
         if (event is PageNumberIncremented) {
-          emit(state.copyWith(page: state.page + 1, articles: await _getArticles(event, emit, state.page+1), status: PostStatus.success));
+          emit(state.copyWith(
+              page: state.page + 1,
+              articles: await _getArticles(event, emit, state.page + 1),
+              status: PostStatus.success));
         } else if (event is PageNumberDecremented) {
-          emit(state.copyWith(page: state.page - 1, articles: await _getArticles(event, emit, state.page-1), status: PostStatus.success));
+          emit(state.copyWith(
+              page: state.page - 1,
+              articles: await _getArticles(event, emit, state.page - 1),
+              status: PostStatus.success));
         }
       } catch (_) {
         emit(state.copyWith(status: PostStatus.failure));
       }
     });
   }
-  
-  Future<List<Article>> _getArticles(PageEvent event, Emitter<PageState> emit, page) async {
+
+  Future<List<Article>> _getArticles(
+      PageEvent event, Emitter<PageState> emit, page) async {
     try {
-      final articles = await newsRepository.getNews(country: state.country, category: state.category, q: state.q, pageSize: state.pageSize, page: page);
+      final articles = await newsRepository.getNews(
+          country: state.country,
+          category: state.category,
+          q: state.q,
+          pageSize: state.pageSize,
+          page: page);
       return articles;
     } catch (_) {
       return [];

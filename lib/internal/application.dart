@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_news_viewer/frontend/article_page.dart';
 import 'package:flutter_news_viewer/frontend/home_page.dart';
 import 'package:flutter_news_viewer/frontend/news_page.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_news_viewer/domain/bloc/theme_cubit.dart';
 
 class App extends StatelessWidget {

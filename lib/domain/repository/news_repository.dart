@@ -7,22 +7,18 @@ class NewsRepository {
   NewsRepository(this._apiEndpoint);
 
   Future<List<Article>> getNews(
-      {
-        String? country,
-        String? category,
-        String? sources,
-        String? q,
-        required int pageSize,
-        required int page
-      }
-  ){
+      {String? country,
+      String? category,
+      String? sources,
+      String? q,
+      required int pageSize,
+      required int page}) {
     return _apiEndpoint.getNews(
-      country: country,
-      category: category,
-      sources: sources,
-      q: q,
-      pageSize: pageSize,
-      page: page
-    );
+        country: country,
+        category: category,
+        sources: sources,
+        q: q,
+        pageSize: pageSize,
+        page: page);
   }
 }

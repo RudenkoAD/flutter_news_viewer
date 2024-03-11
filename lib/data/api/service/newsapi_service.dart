@@ -6,10 +6,10 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 class NewsApiService {
   static const baseUrl = 'https://newsapi.org/v2';
   final apiKey = dotenv.env['NEWSAPI_API_KEY'];
-  final Dio dio = Dio(BaseOptions (baseUrl: baseUrl));
+  final Dio dio = Dio(BaseOptions(baseUrl: baseUrl));
 
   Future<List<ApiArticle>> getNews({required GetnewsBody body}) async {
-    try{
+    try {
       final query = {
         'apiKey': apiKey,
         ...body.toJson(),
@@ -22,6 +22,6 @@ class NewsApiService {
       return articles.map((json) => ApiArticle.fromJson(json)).toList();
     } on DioException catch (e) {
       throw Exception(e.message);
-    } 
+    }
   }
 }

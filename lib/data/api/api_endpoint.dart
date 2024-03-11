@@ -3,7 +3,6 @@ import 'package:flutter_news_viewer/domain/model/article.dart';
 import 'package:flutter_news_viewer/data/api/request/get_news_body.dart';
 import 'package:flutter_news_viewer/data/api/service/newsapi_service.dart';
 
-
 class ApiEndpoint {
   final NewsApiService _newsApiService;
 
@@ -27,6 +26,8 @@ class ApiEndpoint {
     );
 
     final apiArticles = await _newsApiService.getNews(body: body);
-    return apiArticles.map((apiarticle) => ArticleMapper.fromApi(apiarticle)).toList();
+    return apiArticles
+        .map((apiarticle) => ArticleMapper.fromApi(apiarticle))
+        .toList();
   }
 }
