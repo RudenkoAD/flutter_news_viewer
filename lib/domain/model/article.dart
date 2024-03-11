@@ -1,4 +1,7 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'article.g.dart';
 
+@JsonSerializable()
 class Article {
   final Map<String, dynamic> source;
   final String author;
@@ -19,4 +22,7 @@ class Article {
     required this.publishedAt,
     required this.content
   });
+
+  factory Article.fromJson(Map<String, dynamic> json) => _$ArticleFromJson(json);
+  Map<String, dynamic> toJson() => _$ArticleToJson(this);
 }

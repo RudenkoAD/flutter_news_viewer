@@ -1,3 +1,7 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'api_article.g.dart';
+
+@JsonSerializable()
 class ApiArticle{
   final Map<String, dynamic> source;
   final String author;
@@ -8,13 +12,17 @@ class ApiArticle{
   final String publishedAt;
   final String content;
 
-  ApiArticle.fromJson(Map<String, dynamic> json)
-      : source = json['source'],
-        author = json['author']??'',
-        title = json['title']??'',
-        description = json['description']??'',
-        url = json['url']??'',
-        urlToImage = json['urlToImage']??'',
-        publishedAt = json['publishedAt'],
-        content = json['content']??'';
+  ApiArticle({
+    required this.source,
+    required this.author,
+    required this.title,
+    required this.description,
+    required this.url,
+    required this.urlToImage,
+    required this.publishedAt,
+    required this.content
+  });
+
+  factory ApiArticle.fromJson(Map<String, dynamic> json) => _$ApirticleFromJson(json);
+  Map<String, dynamic> toJson() => _$ApiArticleToJson(this);
 }
