@@ -8,7 +8,7 @@ part of 'article.dart';
 
 Article _$ArticleFromJson(Map<String, dynamic> json) => Article(
       source: json['source'] as Map<String, dynamic>,
-      author: json['author'] as String,
+      author: json['author'] as String?,
       title: json['title'] as String,
       description: json['description'] as String?,
       url: json['url'] as String,

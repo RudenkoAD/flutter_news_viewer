@@ -8,7 +8,7 @@ part of 'api_article.dart';
 
 ApiArticle _$ApiArticleFromJson(Map<String, dynamic> json) => ApiArticle(
       source: json['source'] as Map<String, dynamic>,
-      author: json['author'] as String,
+      author: json['author'] as String?,
       title: json['title'] as String,
       description: json['description'] as String?,
       url: json['url'] as String,

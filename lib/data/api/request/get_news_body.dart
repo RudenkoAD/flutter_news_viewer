@@ -29,4 +29,8 @@ class GetnewsBody extends BaseBody{
     };
   }
 
+  @override
+  String toString(){
+    return 'GetnewsBody{country: $country, category: $category, sources: $sources, q: $q, pageSize: $pageSize, page: $page}';
+  }
 }

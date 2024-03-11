@@ -1,8 +1,11 @@
+import 'dart:math';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_news_viewer/domain/model/article.dart';
 import 'package:flutter_news_viewer/domain/repository/news_repository.dart';
 import 'package:flutter_news_viewer/internal/dependencies/repository_module.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_news_viewer/logger.dart';
+
 part 'page_state.dart';
 part 'page_event.dart';
 
@@ -12,16 +15,32 @@ class PageBloc extends Bloc<PageEvent, PageState> {
   PageBloc() : super(const PageState()) {
     on<PageEvent>((event, emit) async {
       try {
-        if (event is PageNumberIncremented) {
-          emit(state.copyWith(
-              page: state.page + 1,
-              articles: await _getArticles(event, emit, state.page + 1),
+        switch(event.runtimeType){
+        case (const (PageNumberIncremented)):
+          logger.i('PageNumberIncremented, new page: ${state.page + 1}');
+          final newState = state.copyWith(page: state.page + 1);
+          final newArticles = await _getArticles(event, emit, newState);
+          emit(newState.copyWith(
+              articles: newArticles,
               status: PostStatus.success));
-        } else if (event is PageNumberDecremented) {
-          emit(state.copyWith(
-              page: state.page - 1,
-              articles: await _getArticles(event, emit, state.page - 1),
+          break;
+        case (const (PageNumberDecremented)):
+          logger.i('PageNumberDecremented, new page: ${max(1, state.page - 1)}');
+          final newState = state.copyWith(page: max(1, state.page - 1));
+          final newArticles = await _getArticles(event, emit, newState);
+          emit(newState.copyWith(
+              articles: newArticles,
               status: PostStatus.success));
+          break;
+        case (const (PageCountryChanged)):
+          logger.d('PageCountryChanged, country: ${(event as PageCountryChanged).country}');
+          final newstate = state.copyWith(
+              country: event.country);
+          final newArticles = await _getArticles(event, emit, newstate);
+          emit(newstate.copyWith(
+              articles: newArticles,
+              status: PostStatus.success));
+          break;
         }
       } catch (_) {
         emit(state.copyWith(status: PostStatus.failure));
@@ -30,16 +49,18 @@ class PageBloc extends Bloc<PageEvent, PageState> {
   }
 
   Future<List<Article>> _getArticles(
-      PageEvent event, Emitter<PageState> emit, page) async {
+      PageEvent event, Emitter<PageState> emit, newstate) async {
     try {
       final articles = await newsRepository.getNews(
-          country: state.country,
-          category: state.category,
-          q: state.q,
-          pageSize: state.pageSize,
-          page: page);
+          country: newstate.country,
+          category: newstate.category,
+          q: newstate.q,
+          pageSize: newstate.pageSize,
+          page: newstate.page);
+      logger.i('bloc got ${articles.length} articles from newsapi.org');
       return articles;
-    } catch (_) {
+    } catch (e) {
+      logger.e('bloc failed to get articles: $e');
       return [];
     }
   }

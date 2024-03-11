@@ -3,6 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_news_viewer/data/api/request/get_news_body.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+import 'package:flutter_news_viewer/logger.dart';
+
 class NewsApiService {
   static const baseUrl = 'https://newsapi.org/v2';
   final apiKey = dotenv.env['NEWSAPI_API_KEY'];
@@ -14,10 +16,13 @@ class NewsApiService {
         'apiKey': apiKey,
         ...body.toJson(),
       };
+      logger.d("query: $query\n");
       final response = await dio.get(
         '/top-headlines',
         queryParameters: query,
       );
+      logger.i("fetched ${response.data['totalResults']} articles from newsapi.org");
+      logger.d("response: $response\n");
       final articles = response.data['articles'] as List;
       return articles.map((json) => ApiArticle.fromJson(json)).toList();
     } on DioException catch (e) {

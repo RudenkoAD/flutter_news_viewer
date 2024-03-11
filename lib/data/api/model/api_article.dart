@@ -4,7 +4,7 @@ part 'api_article.g.dart';
 @JsonSerializable()
 class ApiArticle{
   final Map<String, dynamic> source;
-  final String author;
+  final String? author;
   final String title;
   final String? description;
   final String url;
