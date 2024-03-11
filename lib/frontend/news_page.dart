@@ -32,6 +32,9 @@ class ArticleList extends StatelessWidget {
         if (state.status == PostStatus.initial) {
           return const CircularProgressIndicator();
         } else if (state.status == PostStatus.success) {
+          if (state.articles.isEmpty) {
+            return const Center(child: Text('No articles found'));
+          }
           return ListView.builder(
             itemCount: state.articles.length,
             itemBuilder: (context, index) {
@@ -63,14 +66,12 @@ class ArticleTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(15.0),
           ),
           child: ListTile(
-            leading: article.urlToImage != ""
-                ? Image.network(article.urlToImage)
-                : const Icon(Icons.face),
+            leading: SizedBox(width: 100, height: 100, child: article.urlToImage == null? const ImageIcon(AssetImage('assets/placeholder.png')): Image.network(article.urlToImage!), ),
             title: Text(
               article.title,
               style: textTheme.bodyLarge,
             ),
-            subtitle: Text(article.description, style: textTheme.bodySmall),
+            subtitle: Text(article.description??'no description available', style: textTheme.bodySmall),
           ),
         ),
         onTap: () {
