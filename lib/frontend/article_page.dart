@@ -1,23 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_news_viewer/domain/model/article.dart';
+class ArticlePageArguments{
+  final Article article;
+  ArticlePageArguments({required this.article});
+}
 
 class ArticlePage extends StatelessWidget {
-  final String url;
-  late final WebViewController controller;
-  ArticlePage({super.key, required this.url}){
-    controller = WebViewController()
-  ..setBackgroundColor(Colors.transparent)
-  ..setJavaScriptMode(JavaScriptMode.unrestricted)
-  ..loadRequest(Uri.parse(url));
-  }
-
+  const ArticlePage({super.key});
   @override
   Widget build(BuildContext context) {
+    final ArticlePageArguments arguments = ModalRoute.of(context)!.settings.arguments as ArticlePageArguments;
+    final Article article = arguments.article;
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        title: const Text('Article Page'),
+        title: Text(article.title),
       ),
-      body: WebViewWidget(controller: controller,
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.network(article.urlToImage),
+            const SizedBox(height: 16),
+            Text(article.title, style: Theme.of(context).textTheme.titleLarge),
+            const SizedBox(height: 16),
+            Text(article.description, style: Theme.of(context).textTheme.bodyMedium),
+          ],
+        ),
       ),
     );
   }

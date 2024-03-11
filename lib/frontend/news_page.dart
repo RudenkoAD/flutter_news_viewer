@@ -73,11 +73,7 @@ class ArticleTile extends StatelessWidget {
             subtitle: Text(article.description, style: textTheme.bodySmall),
           ),
         ),
-        onTap: () {Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ArticlePage(url: article.url),
-                              settings: RouteSettings()));}
+        onTap: () {Navigator.pushNamed(context, '/article', arguments: ArticlePageArguments(article: article));},
       ),
     );
   }
