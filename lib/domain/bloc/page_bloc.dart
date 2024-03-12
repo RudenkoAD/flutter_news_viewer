@@ -34,12 +34,14 @@ class PageBloc extends Bloc<PageEvent, PageState> {
           break;
         case (const (PageCountryChanged)):
           logger.d('PageCountryChanged, country: ${(event as PageCountryChanged).country}');
-          final newstate = state.copyWith(
+          var newState = state.copyWith(
               country: event.country);
-          final newArticles = await _getArticles(event, emit, newstate);
-          emit(newstate.copyWith(
+          final newArticles = await _getArticles(event, emit, newState);
+          newState = newState.copyWith(
               articles: newArticles,
-              status: PostStatus.success));
+              status: PostStatus.success);
+          logger.d("emitting state $newState");
+          emit(newState);
           break;
         }
       } catch (_) {

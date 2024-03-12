@@ -13,12 +13,10 @@ class NewsPage extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Top Headlines'),
         ),
-        body: BlocProvider(
-            create: (_) => PageBloc()..add(PageNumberIncremented()),
-            child: const Stack(children: [
+        body: const Stack(children: [
               Center(child: ArticleList()),
               Center(child: Overlay()),
-            ])));
+            ]));
   }
 }
 
