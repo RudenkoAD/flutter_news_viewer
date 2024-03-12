@@ -34,12 +34,12 @@ class HomePageView extends StatelessWidget {
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text('Please enter aa newsapi API key'),
+                          content: Text('Please enter a newsapi API key'),
                         ),
                       );
                     }
                   },
-                  child: Text('Go to News', style: theme.textTheme.titleMedium),
+                  child: Text('Go to News', style: theme.textTheme.titleMedium, textAlign: TextAlign.center,),
                 );
               }),
               const SizedBox(height: 16),
@@ -48,7 +48,7 @@ class HomePageView extends StatelessWidget {
                 children: [
                   const Text('Dark Mode: '),
                   Switch(
-                    value: theme == ThemeCubit.lightTheme,
+                    value: theme == ThemeCubit.darkTheme,
                     onChanged: (value) {
                       context.read<ThemeCubit>().changeTheme();
                     },
