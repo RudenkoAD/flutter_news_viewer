@@ -14,9 +14,9 @@ class NewsPage extends StatelessWidget {
           title: const Text('Top Headlines'),
         ),
         body: const Stack(children: [
-              Center(child: ArticleList()),
-              Center(child: Overlay()),
-            ]));
+          Center(child: ArticleList()),
+          Center(child: Overlay()),
+        ]));
   }
 }
 
@@ -64,12 +64,19 @@ class ArticleTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(15.0),
           ),
           child: ListTile(
-            leading: SizedBox(width: 100, height: 100, child: article.urlToImage == null? const ImageIcon(AssetImage('assets/placeholder.png')): Image.network(article.urlToImage!), ),
+            leading: SizedBox(
+              width: 100,
+              height: 100,
+              child: article.urlToImage == null
+                  ? const ImageIcon(AssetImage('assets/placeholder.png'))
+                  : Image.network(article.urlToImage!),
+            ),
             title: Text(
               article.title,
               style: textTheme.bodyLarge,
             ),
-            subtitle: Text(article.description??'no description available', style: textTheme.bodySmall),
+            subtitle: Text(article.description ?? 'no description available',
+                style: textTheme.bodySmall),
           ),
         ),
         onTap: () {

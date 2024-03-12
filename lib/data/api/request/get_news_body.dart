@@ -1,6 +1,6 @@
 import 'package:flutter_news_viewer/data/api/request/base_body.dart';
 
-class GetnewsBody extends BaseBody{
+class GetnewsBody extends BaseBody {
   final String apiKey;
   final String? country;
   final String? category;
@@ -33,7 +33,7 @@ class GetnewsBody extends BaseBody{
   }
 
   @override
-  String toString(){
+  String toString() {
     return 'GetnewsBody{country: $country, category: $category, sources: $sources, q: $q, pageSize: $pageSize, page: $page}';
   }
 }

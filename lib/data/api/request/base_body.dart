@@ -1,3 +1,3 @@
-abstract class BaseBody{
+abstract class BaseBody {
   Map<String, dynamic> toJson();
 }

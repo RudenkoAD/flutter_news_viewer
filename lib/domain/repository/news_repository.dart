@@ -7,8 +7,7 @@ class NewsRepository {
   NewsRepository(this._apiEndpoint);
 
   Future<List<Article>> getNews(
-      {
-      String? apiKey,
+      {String? apiKey,
       String? country,
       String? category,
       String? sources,

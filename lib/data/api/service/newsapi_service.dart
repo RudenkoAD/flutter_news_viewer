@@ -16,7 +16,8 @@ class NewsApiService {
         '/top-headlines',
         queryParameters: query,
       );
-      logger.i("fetched ${response.data['totalResults']} articles from newsapi.org");
+      logger.i(
+          "fetched ${response.data['totalResults']} articles from newsapi.org");
       logger.d("response: $response\n");
       final articles = response.data['articles'] as List;
       return articles.map((json) => ApiArticle.fromJson(json)).toList();
