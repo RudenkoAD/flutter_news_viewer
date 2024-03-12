@@ -7,13 +7,19 @@ class NewsRepository {
   NewsRepository(this._apiEndpoint);
 
   Future<List<Article>> getNews(
-      {String? country,
+      {
+      String? apiKey,
+      String? country,
       String? category,
       String? sources,
       String? q,
       required int pageSize,
       required int page}) {
+    if (apiKey == null) {
+      throw ArgumentError.notNull('apiKey');
+    }
     return _apiEndpoint.getNews(
+        apiKey: apiKey,
         country: country,
         category: category,
         sources: sources,

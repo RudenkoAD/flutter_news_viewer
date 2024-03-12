@@ -3,6 +3,7 @@ part of 'page_bloc.dart';
 enum PostStatus { initial, success, failure }
 
 final class PageState extends Equatable {
+  final String? apiKey;
   final PostStatus status;
   final List<Article> articles;
 
@@ -13,7 +14,8 @@ final class PageState extends Equatable {
   final int page;
 
   const PageState(
-      {this.status = PostStatus.initial,
+      {this.apiKey,
+      this.status = PostStatus.initial,
       this.articles = const <Article>[],
       this.country = 'ru',
       this.category,
@@ -22,6 +24,7 @@ final class PageState extends Equatable {
       this.page = 0});
 
   PageState copyWith({
+    String? apiKey,
     PostStatus? status,
     List<Article>? articles,
     String? country,
@@ -31,6 +34,7 @@ final class PageState extends Equatable {
     int? page,
   }) {
     return PageState(
+        apiKey: apiKey ?? this.apiKey,
         status: status ?? this.status,
         articles: articles ?? this.articles,
         country: country ?? this.country,
@@ -42,5 +46,5 @@ final class PageState extends Equatable {
 
   @override
   List<Object?> get props =>
-      [status, articles, country, category, q, pageSize, page];
+      [apiKey, status, articles, country, category, q, pageSize, page];
 }

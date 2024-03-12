@@ -15,34 +15,39 @@ class PageBloc extends Bloc<PageEvent, PageState> {
   PageBloc() : super(const PageState()) {
     on<PageEvent>((event, emit) async {
       try {
-        switch(event.runtimeType){
-        case (const (PageNumberIncremented)):
-          logger.i('PageNumberIncremented, new page: ${state.page + 1}');
-          final newState = state.copyWith(page: state.page + 1);
-          final newArticles = await _getArticles(event, emit, newState);
-          emit(newState.copyWith(
-              articles: newArticles,
-              status: PostStatus.success));
-          break;
-        case (const (PageNumberDecremented)):
-          logger.i('PageNumberDecremented, new page: ${max(1, state.page - 1)}');
-          final newState = state.copyWith(page: max(1, state.page - 1));
-          final newArticles = await _getArticles(event, emit, newState);
-          emit(newState.copyWith(
-              articles: newArticles,
-              status: PostStatus.success));
-          break;
-        case (const (PageCountryChanged)):
-          logger.d('PageCountryChanged, country: ${(event as PageCountryChanged).country}');
-          var newState = state.copyWith(
-              country: event.country);
-          final newArticles = await _getArticles(event, emit, newState);
-          newState = newState.copyWith(
-              articles: newArticles,
-              status: PostStatus.success);
-          logger.d("emitting state $newState");
-          emit(newState);
-          break;
+        switch (event.runtimeType) {
+          case (const (PageInitialized)):
+            logger.i('PageInitialized');
+            final newArticles = await _getArticles(event, emit, state);
+            emit(state.copyWith(
+                articles: newArticles, status: PostStatus.success));
+          case (const (PageNumberIncremented)):
+            logger.i('PageNumberIncremented, new page: ${state.page + 1}');
+            final newState = state.copyWith(page: state.page + 1);
+            final newArticles = await _getArticles(event, emit, newState);
+            emit(newState.copyWith(
+                articles: newArticles, status: PostStatus.success));
+            break;
+          case (const (PageNumberDecremented)):
+            logger.i(
+                'PageNumberDecremented, new page: ${max(1, state.page - 1)}');
+            final newState = state.copyWith(page: max(1, state.page - 1));
+            final newArticles = await _getArticles(event, emit, newState);
+            emit(newState.copyWith(
+                articles: newArticles, status: PostStatus.success));
+            break;
+          case (const (PageCountryChanged)):
+            logger.d(
+                'PageCountryChanged, country: ${(event as PageCountryChanged).country}');
+            var newState = state.copyWith(country: event.country);
+            logger.d("emitting state $newState");
+            emit(newState);
+            break;
+          case (const (ApiKeyEntered)):
+            logger
+                .d('ApiKeyEntered, apiKey: ${(event as ApiKeyEntered).apiKey}');
+            emit(state.copyWith(apiKey: (event).apiKey));
+            break;
         }
       } catch (_) {
         emit(state.copyWith(status: PostStatus.failure));
@@ -54,6 +59,7 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       PageEvent event, Emitter<PageState> emit, newstate) async {
     try {
       final articles = await newsRepository.getNews(
+          apiKey: newstate.apiKey,
           country: newstate.country,
           category: newstate.category,
           q: newstate.q,

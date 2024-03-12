@@ -9,6 +9,7 @@ class ApiEndpoint {
   ApiEndpoint(this._newsApiService);
 
   Future<List<Article>> getNews({
+    required String apiKey,
     String? country,
     String? category,
     String? sources,
@@ -17,6 +18,7 @@ class ApiEndpoint {
     required int page,
   }) async {
     final body = GetnewsBody(
+      apiKey: apiKey,
       country: country,
       category: category,
       sources: sources,

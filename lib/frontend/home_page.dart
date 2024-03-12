@@ -25,21 +25,40 @@ class HomePageView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/news');
-                },
-                child: Text('Go to News', style: theme.textTheme.titleMedium),
+              BlocBuilder<PageBloc, PageState>(builder: (context, state) {
+                return ElevatedButton(
+                  onPressed: () {
+                    if (state.apiKey != null) {
+                      context.read<PageBloc>().add(PageInitialized());
+                      Navigator.of(context).pushNamed('/news');
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Please enter aa newsapi API key'),
+                        ),
+                      );
+                    }
+                  },
+                  child: Text('Go to News', style: theme.textTheme.titleMedium),
+                );
+              }),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Dark Mode: '),
+                  Switch(
+                    value: theme == ThemeCubit.lightTheme,
+                    onChanged: (value) {
+                      context.read<ThemeCubit>().changeTheme();
+                    },
+                  ),
+                ],
               ),
               const SizedBox(height: 16),
-              Switch(
-                value: theme == ThemeCubit.lightTheme,
-                onChanged: (value) {
-                  context.read<ThemeCubit>().changeTheme();
-                },
-              ),
+              const CoutryMenu(),
               const SizedBox(height: 16),
-              const CoutryMenu()
+              const ApiKeyTextField(),
             ],
           ),
         ),
@@ -116,12 +135,45 @@ class CoutryMenu extends StatelessWidget {
     return BlocBuilder<PageBloc, PageState>(
       builder: (context, state) {
         final country = state.country;
-        return DropdownButton<String>(
-            value: country,
-            onChanged: (String? newValue) {
-              context.read<PageBloc>().add(PageCountryChanged(newValue!));
-            },
-            items: items);
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('Country: '),
+            DropdownButton<String>(
+                value: country,
+                onChanged: (String? newValue) {
+                  context.read<PageBloc>().add(PageCountryChanged(newValue!));
+                },
+                items: items),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class ApiKeyTextField extends StatelessWidget {
+  const ApiKeyTextField({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<PageBloc, PageState>(
+      builder: (context, state) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('API Key: '),
+            Expanded(
+              child: TextField(
+                onChanged: (value) {
+                  context.read<PageBloc>().add(ApiKeyEntered(value));
+                },
+                decoration: const InputDecoration(
+                  hintText: 'Enter your API key',
+                ),
+              ),
+            ),
+          ],
+        );
       },
     );
   }

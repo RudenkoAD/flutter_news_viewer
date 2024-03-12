@@ -1,6 +1,7 @@
 import 'package:flutter_news_viewer/data/api/request/base_body.dart';
 
 class GetnewsBody extends BaseBody{
+  final String apiKey;
   final String? country;
   final String? category;
   final String? sources;
@@ -9,6 +10,7 @@ class GetnewsBody extends BaseBody{
   final int page;
 
   GetnewsBody({
+    required this.apiKey,
     this.country,
     this.category,
     this.sources,
@@ -20,6 +22,7 @@ class GetnewsBody extends BaseBody{
   @override
   Map<String, dynamic> toJson() {
     return {
+      'apiKey': apiKey,
       if (country != null) 'country': country,
       if (category != null) 'category': category,
       if (sources != null) 'sources': sources,

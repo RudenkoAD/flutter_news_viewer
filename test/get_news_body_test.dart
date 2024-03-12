@@ -5,6 +5,7 @@ void main() {
   group('GetnewsBody', () {
     test('toJson should return the correct JSON map', () {
       final body = GetnewsBody(
+        apiKey: 'apiKey',
         country: 'us',
         category: 'business',
         sources: 'cnn',
@@ -27,6 +28,7 @@ void main() {
 
     test('toJson should exclude null values', () {
       final body = GetnewsBody(
+        apiKey: 'apiKey',
         pageSize: 10,
         page: 1,
       );
