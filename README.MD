@@ -15,7 +15,7 @@ Flutter News Viewer is a small application built with Flutter that allows users 
 3. Install dependencies: `flutter pub get`
 4. Run the app: `flutter run`
 ### Android
-1. Download the apk from release/app-release.apk to your device
+1. Download the apk from the [latest release](https://github.com/RudenkoAD/flutter_news_viewer/releases)
 2. Tap the apk file, select install, confirm
 ## Screenshots
 ![Screenshot 1](screenshots/Screenshot_1.png)
