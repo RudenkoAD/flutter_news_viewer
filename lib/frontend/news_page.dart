@@ -1,32 +1,39 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_news_viewer/domain/bloc/page_bloc.dart';
 import 'package:flutter_news_viewer/domain/model/article.dart';
 import 'package:flutter_news_viewer/frontend/article_page.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_news_viewer/domain/bloc/provider.dart';
 
 class NewsPage extends StatelessWidget {
   const NewsPage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Top Headlines'),
-        ),
-        body: const Stack(children: [
+      appBar: AppBar(
+        title: const Text('Top Headlines'),
+      ),
+      body: const Stack(
+        children: [
           Center(child: ArticleList()),
           Center(child: Overlay()),
-        ]));
+        ],
+      ),
+    );
   }
 }
 
-class ArticleList extends StatelessWidget {
+class ArticleList extends ConsumerWidget {
   const ArticleList({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<PageBloc, PageState>(
-      builder: (context, state) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Consumer(
+      builder: (context, watch, _) {
+        final state = ref.watch(pageProvider);
         if (state.status == PostStatus.initial) {
           return const CircularProgressIndicator();
         } else if (state.status == PostStatus.success) {
@@ -48,14 +55,14 @@ class ArticleList extends StatelessWidget {
   }
 }
 
-class ArticleTile extends StatelessWidget {
+class ArticleTile extends ConsumerWidget {
   final Article article;
 
   const ArticleTile({super.key, required this.article});
 
   @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final textTheme = ref.watch(themeProvider).textTheme;
     return Material(
       child: GestureDetector(
         child: Card(
@@ -76,24 +83,26 @@ class ArticleTile extends StatelessWidget {
               style: textTheme.bodyLarge,
             ),
             subtitle: Text(article.description ?? 'no description available',
-                style: textTheme.bodySmall),
+              style: textTheme.bodySmall),
           ),
         ),
         onTap: () {
           Navigator.pushNamed(context, '/article',
-              arguments: ArticlePageArguments(article: article));
+            arguments: ArticlePageArguments(article: article));
         },
       ),
     );
   }
 }
 
-class Overlay extends StatelessWidget {
+class Overlay extends ConsumerWidget {
   //implement buttons to switch pages
   const Overlay({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    PageBloc pageBloc = ref.watch(pageProvider.bloc);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -102,13 +111,13 @@ class Overlay extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                context.read<PageBloc>().add(PageNumberDecremented());
+                pageBloc.add(PageNumberDecremented());
               },
               child: const Text('Previous'),
             ),
             ElevatedButton(
               onPressed: () {
-                context.read<PageBloc>().add(PageNumberIncremented());
+                pageBloc.add(PageNumberIncremented());
               },
               child: const Text('Next'),
             ),
