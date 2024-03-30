@@ -3,15 +3,15 @@ part of 'favourite_cubit.dart';
 enum PostStatus { initial, success, failure }
 
 final class FavouriteState extends Equatable {
-  final List<Article> favouriteArticles;
+  final List<Article> articles;
 
-  const FavouriteState({this.favouriteArticles = const <Article>[]});
+  const FavouriteState({this.articles = const <Article>[]});
 
 
-  FavouriteState copyWith({List<Article>? favouriteArticles}) {
-    return FavouriteState(favouriteArticles: favouriteArticles ?? this.favouriteArticles);
+  FavouriteState copyWith({List<Article>? articles}) {
+    return FavouriteState(articles: articles ?? this.articles);
   }
 
   @override
-  List<Object?> get props => [favouriteArticles];
+  List<Object?> get props => [articles];
 }

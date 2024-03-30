@@ -9,27 +9,25 @@ final class FavouriteCubit extends Cubit<FavouriteState> {
   FavouriteCubit() : super(const FavouriteState());
 
   void addFavourite(Article article) {
-    final List<Article> newFavouriteArticles = List<Article>.from(state.favouriteArticles);
+    logger.i('added to favourites: ${article.title}');
+    final List<Article> newFavouriteArticles = List<Article>.from(state.articles);
     newFavouriteArticles.add(article);
-    emit(state.copyWith(favouriteArticles: newFavouriteArticles));
+    emit(state.copyWith(articles: newFavouriteArticles));
   }
 
   void removeFavourite(Article article) {
-    final List<Article> newFavouriteArticles = List<Article>.from(state.favouriteArticles);
+    logger.i('removed from favourites: ${article.title}');
+    final List<Article> newFavouriteArticles = List<Article>.from(state.articles);
     newFavouriteArticles.remove(article);
-    emit(state.copyWith(favouriteArticles: newFavouriteArticles));
+    emit(state.copyWith(articles: newFavouriteArticles));
   }
 
-  List<Article> getFavouriteArticles() {
-    return state.favouriteArticles;
-  }
-
-  bool isFavourite(Article article) {
-    return state.favouriteArticles.contains(article);
+  bool _isFavourite(Article article) {
+    return state.articles.contains(article);
   }
   
   void toggleFavourite(Article article) {
-    if (isFavourite(article)) {
+    if (_isFavourite(article)) {
       removeFavourite(article);
     } else {
       addFavourite(article);
@@ -37,7 +35,7 @@ final class FavouriteCubit extends Cubit<FavouriteState> {
   }
 
   void clearFavourites() {
-    emit(state.copyWith(favouriteArticles: const <Article>[]));
+    emit(state.copyWith(articles: const <Article>[]));
   }
 
 }
