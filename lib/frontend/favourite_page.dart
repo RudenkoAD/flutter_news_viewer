@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news_viewer/main.dart';
+import 'package:flutter_news_viewer/domain/bloc/provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ArticlePage extends ConsumerWidget {
