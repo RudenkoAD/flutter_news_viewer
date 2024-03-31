@@ -17,6 +17,7 @@ void main() {
       final json = body.toJson();
 
       expect(json, {
+        'apiKey': 'apiKey',
         'country': 'us',
         'category': 'business',
         'sources': 'cnn',
@@ -36,6 +37,7 @@ void main() {
       final json = body.toJson();
 
       expect(json, {
+        'apiKey': 'apiKey',
         'pageSize': 10,
         'page': 1,
       });
