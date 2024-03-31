@@ -1,11 +1,11 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_news_viewer/domain/model/article.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_news_viewer/logger.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 part 'favourite_state.dart';
 
-final class FavouriteCubit extends Cubit<FavouriteState> {
+final class FavouriteCubit extends HydratedCubit<FavouriteState> {
   FavouriteCubit() : super(const FavouriteState());
 
   void addFavourite(Article article) {
@@ -35,4 +35,15 @@ final class FavouriteCubit extends Cubit<FavouriteState> {
   void clearFavourites() {
     emit(state.copyWith(articles: const <Article>[]));
   }
+  
+  @override
+  FavouriteState? fromJson(Map<String, dynamic> json) {
+    final List<Article> articles = (json['state'] as List)
+        .map((e) => Article.fromJson(e as Map<String, dynamic>))
+        .toList();
+    return FavouriteState(articles: articles);
+    }
+  
+  @override
+  Map<String, dynamic>? toJson(FavouriteState state) => {"state":state.articles.map((e) => e.toJson()).toList()};
 }
