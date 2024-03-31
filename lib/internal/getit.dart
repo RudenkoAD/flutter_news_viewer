@@ -13,7 +13,6 @@ void setupRelease() {
   getIt.registerSingleton<NewsRepository>(NewsRepositoryImp());
 }
 
-
 void setupMock() {
   getIt.registerSingleton<NewsRepository>(NewsRepositoryMock());
 }

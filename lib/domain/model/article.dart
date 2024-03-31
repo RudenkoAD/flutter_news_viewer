@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'article.g.dart';
 
 @JsonSerializable()
-class Article extends Equatable{
+class Article extends Equatable {
   final Map<String, dynamic> source;
   final String? author;
   final String title;
@@ -26,9 +26,9 @@ class Article extends Equatable{
   factory Article.fromJson(Map<String, dynamic> json) =>
       _$ArticleFromJson(json);
   Map<String, dynamic> toJson() => _$ArticleToJson(this);
-  
+
   @override
-  List<Object?> get props{
+  List<Object?> get props {
     return [title, url];
   }
 }

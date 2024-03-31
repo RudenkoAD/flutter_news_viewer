@@ -35,15 +35,16 @@ final class FavouriteCubit extends HydratedCubit<FavouriteState> {
   void clearFavourites() {
     emit(state.copyWith(articles: const <Article>[]));
   }
-  
+
   @override
   FavouriteState? fromJson(Map<String, dynamic> json) {
     final List<Article> articles = (json['state'] as List)
         .map((e) => Article.fromJson(e as Map<String, dynamic>))
         .toList();
     return FavouriteState(articles: articles);
-    }
-  
+  }
+
   @override
-  Map<String, dynamic>? toJson(FavouriteState state) => {"state":state.articles.map((e) => e.toJson()).toList()};
+  Map<String, dynamic>? toJson(FavouriteState state) =>
+      {"state": state.articles.map((e) => e.toJson()).toList()};
 }
