@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_news_viewer/domain/bloc/provider.dart';
 import 'package:flutter_news_viewer/domain/bloc/theme_cubit.dart';
 import 'package:flutter_news_viewer/domain/bloc/page_bloc.dart';
@@ -27,40 +26,14 @@ class HomePageView extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              BlocBuilder<PageBloc, PageState>(builder: (context, state) {
-                return ElevatedButton(
-                  onPressed: () {
-                    if (state.apiKey != null) {
-                      context.read<PageBloc>().add(PageInitialized());
-                      Navigator.of(context).pushNamed('/news');
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('error: API key not set! please contact the developer.'),
-                        ),
-                      );
-                    }
-                  },
-                  child: Text('Go to News', style: theme.textTheme.titleMedium, textAlign: TextAlign.center,),
-                );
-              }),
+              const NewsPageButton(),
               const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text('Dark Mode: '),
-                  Switch(
-                    value: theme == ThemeCubit.darkTheme,
-                    onChanged: (value) {
-                      context.read<ThemeCubit>().changeTheme();
-                    },
-                  ),
-                ],
-              ),
+              const FavouritePageButton(),
               const SizedBox(height: 16),
-              const CoutryMenu(),
+              const ThemeSwitch(),
               const SizedBox(height: 16),
-              const ApiKeyTextField(),
+              CoutryMenu(),
+              const SizedBox(height: 16),
             ],
           ),
         ),
@@ -68,6 +41,34 @@ class HomePageView extends ConsumerWidget {
     }
   }
 
+class  NewsPageButton extends ConsumerWidget {
+  const NewsPageButton({super.key});
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final pageBloc = ref.watch(pageProvider.bloc);
+    final theme = ref.watch(themeProvider);
+    return ElevatedButton(
+      onPressed: () {
+        pageBloc.add(PageInitialized());
+        Navigator.of(context).pushNamed('/news');
+      },
+      child: Text('Go to News', style: theme.textTheme.titleMedium, textAlign: TextAlign.center,),
+    );
+  }
+}
+class FavouritePageButton extends ConsumerWidget {
+  const FavouritePageButton({super.key});
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(themeProvider);
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.of(context).pushNamed('/favourite');
+      },
+      child: Text('Go to Favourite', style: theme.textTheme.titleMedium, textAlign: TextAlign.center,),
+    );
+  }
+}
 class CoutryMenu extends ConsumerWidget {
   CoutryMenu({super.key});
   final List<DropdownMenuItem<String>> items = PageState.countries
@@ -78,22 +79,37 @@ class CoutryMenu extends ConsumerWidget {
       .toList();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return BlocBuilder<PageBloc, PageState>(
-      builder: (context, state) {
-        final country = state.country;
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('Country: '),
             DropdownButton<String>(
-                value: country,
+                value: ref.watch(pageProvider).country,
                 onChanged: (String? newValue) {
-                  context.read<PageBloc>().add(PageCountryChanged(newValue!));
+                  ref.read(pageProvider.bloc).add(PageCountryChanged(newValue!));
                 },
                 items: items),
           ],
         );
-      },
+  }
+}
+class ThemeSwitch extends ConsumerWidget {
+  const ThemeSwitch({super.key});
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(themeProvider);
+    final themeCubit = ref.watch(themeProvider.bloc);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text('Dark Mode: '),
+        Switch(
+          value: theme == ThemeCubit.darkTheme,
+          onChanged: (value) {
+            themeCubit.changeTheme();
+          },
+        ),
+      ],
     );
   }
 }
