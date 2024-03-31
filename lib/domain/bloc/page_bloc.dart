@@ -2,15 +2,15 @@ import 'dart:math';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_news_viewer/domain/model/article.dart';
 import 'package:flutter_news_viewer/domain/repository/news_repository.dart';
-import 'package:flutter_news_viewer/internal/dependencies/repository_module.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_news_viewer/logger.dart';
+import 'package:get_it/get_it.dart';
 
 part 'page_state.dart';
 part 'page_event.dart';
 
 class PageBloc extends Bloc<PageEvent, PageState> {
-  final NewsRepository newsRepository = RepositoryModule.newsRepository();
+  final NewsRepository newsRepository = GetIt.I.get<NewsRepository>();
 
   PageBloc() : super(const PageState()) {
     on<PageEvent>((event, emit) async {
