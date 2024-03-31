@@ -77,7 +77,7 @@ final class PageState extends Equatable {
       this.category,
       this.q,
       this.pageSize = 20,
-      this.page = 0});
+      this.page = 1});
 
   PageState copyWith({
     String? apiKey,
