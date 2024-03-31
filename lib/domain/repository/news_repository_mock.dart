@@ -13,7 +13,7 @@ class NewsRepositoryMock implements NewsRepository {
       required int page}) {
     return Future.value([
       Article(
-          source: {"source": "Test"},
+          source: const {"source": "Test"},
           author: "Author McAuthorson",
           title: "TestTitle",
           description: "TestDescription",
@@ -23,7 +23,7 @@ class NewsRepositoryMock implements NewsRepository {
           publishedAt: DateTime(2024, 3, 31, 0, 0),
           content: "This is a test article. Nothing more, nothing less."),
       Article(
-          source: {"source": "Test"},
+          source: const {"source": "Test"},
           author: null,
           title: "NullTestTitle",
           description: null,
