@@ -49,7 +49,7 @@ class NewsPageButton extends ConsumerWidget {
     final theme = ref.watch(themeProvider);
     return ElevatedButton(
       onPressed: () {
-        pageBloc.add(PageInitialized());
+        pageBloc.add(const PageInitialized());
         Navigator.of(context).pushNamed('/news');
       },
       child: Text(

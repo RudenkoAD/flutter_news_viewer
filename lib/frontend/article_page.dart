@@ -16,18 +16,23 @@ class ArticlePage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            article.urlToImage != null
-                ? Image.network(article.urlToImage!)
-                : const ImageIcon(AssetImage('assets/placeholder.png')),
-            const SizedBox(height: 16),
-            Text(article.title, style: Theme.of(context).textTheme.titleLarge),
-            const SizedBox(height: 16),
-            Text(article.description ?? 'No description available',
-                style: Theme.of(context).textTheme.bodyMedium),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              article.urlToImage != null
+                  ? Image.network(article.urlToImage!)
+                  : const ImageIcon(AssetImage('assets/placeholder.png')),
+              const SizedBox(height: 16),
+              Text(article.title, style: Theme.of(context).textTheme.titleLarge),
+              const SizedBox(height: 16),
+              Text(article.description ?? 'No description available',
+                  style: Theme.of(context).textTheme.bodyMedium),
+              const SizedBox(height: 16),
+              Text(article.content ?? 'No content available',
+                  style: Theme.of(context).textTheme.bodySmall),
+            ],
+          ),
         ),
       ),
     );

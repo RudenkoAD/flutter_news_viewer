@@ -1,17 +1,8 @@
 import 'package:flutter_news_viewer/domain/model/article.dart';
 import 'package:flutter_news_viewer/domain/repository/news_repository.dart';
 
-class NewsRepositoryMock implements NewsRepository {
-  @override
-  Future<List<Article>> getNews(
-      {String? apiKey,
-      String? country,
-      String? category,
-      String? sources,
-      String? q,
-      required int pageSize,
-      required int page}) {
-    return Future.value([
+mockArticles() =>
+[
       Article(
           source: const {"source": "Test"},
           author: "Author McAuthorson",
@@ -31,6 +22,18 @@ class NewsRepositoryMock implements NewsRepository {
           urlToImage: null,
           publishedAt: DateTime(2024, 3, 31, 0, 0),
           content: null)
-    ]);
+    ];
+
+class NewsRepositoryMock implements NewsRepository {
+  @override
+  Future<List<Article>> getNews(
+      {String? apiKey,
+      String? country,
+      String? category,
+      String? sources,
+      String? q,
+      required int pageSize,
+      required int page}) {
+    return Future.value(mockArticles());
   }
 }

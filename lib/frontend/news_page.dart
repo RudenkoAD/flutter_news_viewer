@@ -67,13 +67,13 @@ class Overlay extends ConsumerWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                pageBloc.add(PageNumberDecremented());
+                pageBloc.add(const PageNumberDecremented());
               },
               child: const Text('Previous'),
             ),
             ElevatedButton(
               onPressed: () {
-                pageBloc.add(PageNumberIncremented());
+                pageBloc.add(const PageNumberIncremented());
               },
               child: const Text('Next'),
             ),
