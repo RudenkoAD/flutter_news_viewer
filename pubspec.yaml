@@ -46,6 +46,7 @@ dependencies:
   json_annotation: ^4.8.1
   riverbloc: ^2.2.0
   hooks_riverpod: ^2.5.1
+  get_it: ^7.6.7
 
 dev_dependencies:
   flutter_test:
