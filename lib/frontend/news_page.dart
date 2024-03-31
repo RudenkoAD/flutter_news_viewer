@@ -51,7 +51,6 @@ class ArticleList extends ConsumerWidget {
   }
 }
 
-
 class Overlay extends ConsumerWidget {
   //implement buttons to switch pages
   const Overlay({super.key});

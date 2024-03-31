@@ -7,7 +7,6 @@ final class FavouriteState extends Equatable {
 
   const FavouriteState({this.articles = const <Article>[]});
 
-
   FavouriteState copyWith({List<Article>? articles}) {
     return FavouriteState(articles: articles ?? this.articles);
   }

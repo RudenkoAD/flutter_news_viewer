@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_news_viewer/domain/model/article.dart';
 import 'package:flutter_news_viewer/frontend/article_page_arguments.dart';
 
-
 class ArticlePage extends StatelessWidget {
   const ArticlePage({super.key});
   @override

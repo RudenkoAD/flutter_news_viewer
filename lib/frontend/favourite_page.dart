@@ -15,7 +15,9 @@ class FavouritePage extends ConsumerWidget {
         builder: (context, watch, _) {
           final state = ref.watch(favouriteProvider);
           if (state.articles.isEmpty) {
-            return const Center(child: Text('No articles favourited yet! Head to the news page and favourite some!'));
+            return const Center(
+                child: Text(
+                    'No articles favourited yet! Head to the news page and favourite some!'));
           }
           return ListView.builder(
             itemCount: state.articles.length,

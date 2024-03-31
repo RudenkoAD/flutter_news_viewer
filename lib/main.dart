@@ -7,6 +7,5 @@ Future main() async {
     const ProviderScope(
       child: App(),
     ),
-    );
+  );
 }
-

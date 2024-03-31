@@ -15,39 +15,39 @@ class ArticleTile extends ConsumerWidget {
     return Material(
       child: GestureDetector(
         child: Card(
-          elevation: 6,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          child: ListTile(
-            leading: SizedBox(
-              width: 100,
-              height: 100,
-              child: article.urlToImage == null
-                  ? const ImageIcon(AssetImage('assets/placeholder.png'))
-                  : Image.network(article.urlToImage!),
+            elevation: 6,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
             ),
-            title: Text(
-              article.title,
-              style: textTheme.bodyLarge,
-            ),
-            subtitle: Text(article.description ?? 'no description available',
-              style: textTheme.bodySmall),
-            trailing: 
-                IconButton(
-                  icon: Icon(
-                    Icons.favorite,
-                    color: ref.watch(favouriteProvider).isFavourite(article) ? Colors.red : null,
-                  ),
-                  onPressed: () {
-                    ref.read(favouriteProvider.bloc).toggleFavourite(article);
-                  },
+            child: ListTile(
+              leading: SizedBox(
+                width: 100,
+                height: 100,
+                child: article.urlToImage == null
+                    ? const ImageIcon(AssetImage('assets/placeholder.png'))
+                    : Image.network(article.urlToImage!),
+              ),
+              title: Text(
+                article.title,
+                style: textTheme.bodyLarge,
+              ),
+              subtitle: Text(article.description ?? 'no description available',
+                  style: textTheme.bodySmall),
+              trailing: IconButton(
+                icon: Icon(
+                  Icons.favorite,
+                  color: ref.watch(favouriteProvider).isFavourite(article)
+                      ? Colors.red
+                      : null,
                 ),
-            )
-          ),
+                onPressed: () {
+                  ref.read(favouriteProvider.bloc).toggleFavourite(article);
+                },
+              ),
+            )),
         onTap: () {
           Navigator.pushNamed(context, '/article',
-            arguments: ArticlePageArguments(article: article));
+              arguments: ArticlePageArguments(article: article));
         },
       ),
     );
