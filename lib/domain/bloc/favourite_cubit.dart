@@ -21,13 +21,9 @@ final class FavouriteCubit extends Cubit<FavouriteState> {
     newFavouriteArticles.remove(article);
     emit(state.copyWith(articles: newFavouriteArticles));
   }
-
-  bool _isFavourite(Article article) {
-    return state.articles.contains(article);
-  }
   
   void toggleFavourite(Article article) {
-    if (_isFavourite(article)) {
+    if (state.isFavourite(article)) {
       removeFavourite(article);
     } else {
       addFavourite(article);

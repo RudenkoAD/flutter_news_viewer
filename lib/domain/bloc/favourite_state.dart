@@ -12,6 +12,10 @@ final class FavouriteState extends Equatable {
     return FavouriteState(articles: articles ?? this.articles);
   }
 
+  bool isFavourite(Article article) {
+    return articles.contains(article);
+  }
+
   @override
   List<Object?> get props => [articles];
 }
