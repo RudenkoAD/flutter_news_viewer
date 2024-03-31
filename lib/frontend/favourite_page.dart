@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_viewer/domain/bloc/provider.dart';
+import 'package:flutter_news_viewer/frontend/common.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ArticlePage extends ConsumerWidget {
-  const ArticlePage({super.key});
+class FavouritePage extends ConsumerWidget {
+  const FavouritePage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final favouriteCubit = ref.watch(favouriteProvider.bloc);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Your Favourite Articles"),
@@ -21,16 +21,7 @@ class ArticlePage extends ConsumerWidget {
             itemCount: state.articles.length,
             itemBuilder: (context, index) {
               final article = state.articles[index];
-              return ListTile(
-                title: Text(article.title),
-                subtitle: Text(article.description??''),
-                trailing: IconButton(
-                  icon: const Icon(Icons.delete),
-                  onPressed: () {
-                    favouriteCubit.removeFavourite(article);
-                  },
-                ),
-              );
+              return ArticleTile(article: article);
             },
           );
         },
