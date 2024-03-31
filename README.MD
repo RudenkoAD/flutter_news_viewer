@@ -1,25 +1,25 @@
 # Flutter News Viewer
 
 ## Description
-Flutter News Viewer is a small application built with Flutter that allows users to view and read news articles from various sources.
+Flutter News Viewer is a small application built with Flutter that allows users to view and read news articles sourced from [NewsAPI](https://newsapi.org/).
 
 ## Features
 - Browse news articles
+- Select a country to view the news from (some countries, such as us, may work better than others, such as Russia, due to NewsAPI not having equal reach)
 - Light and Dark theme
-- bring your own api key
+- Favourite articles to view them at any time
 
 ## Installation
-### Linux
-1. Clone the repository: `git clone https://github.com/your-username/flutter_news_viewer.git`
-2. Change to the project directory: `cd flutter_news_viewer`
-3. Install dependencies: `flutter pub get`
-4. Run the app: `flutter run`
-### Android
-1. Download the apk from the [latest release](https://github.com/RudenkoAD/flutter_news_viewer/releases)
-2. Tap the apk file, select install, confirm
+1. Download the APK from the [latest release](https://github.com/RudenkoAD/flutter_news_viewer/releases).
+2. Tap the APK file, select install, and confirm.
+
 ## Screenshots
-![Screenshot 1](screenshots/Screenshot_1.png)
-![Screenshot 2](screenshots/Screenshot_2.png)
+Main Menu | News Page(dark mode)
+:--------:|:----------:
+![](screenshots/Screenshot_20240331_152213.jpg)|![](screenshots/Screenshot_20240331_152221.jpg)
+Favourite Button | Favourite Page
+![](screenshots/Screenshot_20240331_152224.jpg) | ![](screenshots/Screenshot_20240331_152228.jpg)
+
 
 ## Contributing
 Contributions are welcome! If you find any bugs or have suggestions for new features, please open an issue or submit a pull request.
