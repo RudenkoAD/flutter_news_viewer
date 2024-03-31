@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_viewer/domain/model/article.dart';
+import 'package:flutter_news_viewer/frontend/article_page_arguments.dart';
 
-class ArticlePageArguments {
-  final Article article;
-  ArticlePageArguments({required this.article});
-}
 
 class ArticlePage extends StatelessWidget {
   const ArticlePage({super.key});
