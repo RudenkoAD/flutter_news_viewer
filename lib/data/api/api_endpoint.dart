@@ -3,6 +3,7 @@ import 'package:flutter_news_viewer/domain/model/article.dart';
 import 'package:flutter_news_viewer/data/api/request/get_news_body.dart';
 import 'package:flutter_news_viewer/data/api/service/newsapi_service.dart';
 import 'package:get_it/get_it.dart';
+
 class ApiEndpoint {
   final NewsApiService _newsApiService = GetIt.I.get<NewsApiService>();
 

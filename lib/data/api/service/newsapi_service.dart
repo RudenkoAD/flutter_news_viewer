@@ -25,5 +25,4 @@ class NewsApiService {
       throw Exception(e.message);
     }
   }
-
 }

@@ -3,7 +3,7 @@ import 'package:flutter_news_viewer/domain/model/article.dart';
 import 'package:flutter_news_viewer/domain/repository/news_repository.dart';
 import 'package:get_it/get_it.dart';
 
-class NewsRepositoryImp implements NewsRepository{
+class NewsRepositoryImp implements NewsRepository {
   NewsRepositoryImp();
   final ApiEndpoint _apiEndpoint = GetIt.I.get<ApiEndpoint>();
   @override
