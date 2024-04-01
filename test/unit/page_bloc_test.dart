@@ -22,34 +22,44 @@ void main() {
       expect(pageBloc.state, const PageState());
     });
 
-    blocTest('PageInitialized event updates state correctly',
+    blocTest(
+      'PageInitialized event updates state correctly',
       build: () => pageBloc,
       act: (bloc) => bloc.add(const PageInitialized()),
-      expect: () => [PageState(articles: mockArticles(), status: PostStatus.success)],
+      expect: () =>
+          [PageState(articles: mockArticles(), status: PostStatus.success)],
     );
 
-    blocTest('PageNumberIncremented event updates state correctly',
+    blocTest(
+      'PageNumberIncremented event updates state correctly',
       build: () => pageBloc,
       act: (bloc) => bloc.add(const PageNumberIncremented()),
-      expect: () => [PageState(articles: mockArticles(), page: 2, status: PostStatus.success)],
+      expect: () => [
+        PageState(articles: mockArticles(), page: 2, status: PostStatus.success)
+      ],
     );
 
-    blocTest('PageNumberDecremented event updates state correctly',
+    blocTest(
+      'PageNumberDecremented event updates state correctly',
       build: () => pageBloc,
       act: (bloc) {
         bloc.add(const PageNumberIncremented());
         bloc.add(const PageNumberIncremented());
         bloc.add(const PageNumberDecremented());
-        },
+      },
       expect: () => [
-        PageState(articles: mockArticles(), page: 2, status: PostStatus.success),
-        PageState(articles: mockArticles(), page: 3, status: PostStatus.success),
-        PageState(articles: mockArticles(), page: 2, status: PostStatus.success)],
+        PageState(
+            articles: mockArticles(), page: 2, status: PostStatus.success),
+        PageState(
+            articles: mockArticles(), page: 3, status: PostStatus.success),
+        PageState(articles: mockArticles(), page: 2, status: PostStatus.success)
+      ],
     );
-    blocTest('PageCountryChanged event updates state correctly',
-    build: () => pageBloc,
-    act: (bloc) => bloc.add(const PageCountryChanged('us')),
-    expect: () => [const PageState(country: 'us')],
+    blocTest(
+      'PageCountryChanged event updates state correctly',
+      build: () => pageBloc,
+      act: (bloc) => bloc.add(const PageCountryChanged('us')),
+      expect: () => [const PageState(country: 'us')],
     );
   });
 }

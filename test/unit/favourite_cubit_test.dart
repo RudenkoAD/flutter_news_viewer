@@ -58,7 +58,9 @@ void main() {
       expect(favouriteCubit.state.articles, isNot(contains(article)));
     });
 
-    test('toggleFavourite should add article to favourites if not already favourited', () {
+    test(
+        'toggleFavourite should add article to favourites if not already favourited',
+        () {
       final article = Article(
           source: const {"source": "Test"},
           author: "Author McAuthorson",
@@ -73,7 +75,9 @@ void main() {
       expect(favouriteCubit.state.articles, contains(article));
     });
 
-    test('toggleFavourite should remove article from favourites if already favourited', () {
+    test(
+        'toggleFavourite should remove article from favourites if already favourited',
+        () {
       final article = Article(
           source: const {"source": "Test"},
           author: "Author McAuthorson",

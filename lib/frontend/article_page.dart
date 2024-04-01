@@ -24,7 +24,8 @@ class ArticlePage extends StatelessWidget {
                   ? Image.network(article.urlToImage!)
                   : const ImageIcon(AssetImage('assets/placeholder.png')),
               const SizedBox(height: 16),
-              Text(article.title, style: Theme.of(context).textTheme.titleLarge),
+              Text(article.title,
+                  style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: 16),
               Text(article.description ?? 'No description available',
                   style: Theme.of(context).textTheme.bodyMedium),

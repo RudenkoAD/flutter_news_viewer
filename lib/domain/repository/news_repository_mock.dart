@@ -1,8 +1,7 @@
 import 'package:flutter_news_viewer/domain/model/article.dart';
 import 'package:flutter_news_viewer/domain/repository/news_repository.dart';
 
-mockArticles() =>
-[
+mockArticles() => [
       Article(
           source: const {"source": "Test"},
           author: "Author McAuthorson",
