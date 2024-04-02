@@ -40,7 +40,7 @@ class PageBloc extends Bloc<PageEvent, PageState> {
             logger.d(
                 'PageCountryChanged, country: ${(event as PageCountryChanged).country}');
             var newState = state.copyWith(country: event.country);
-            logger.d("emitting state $newState");
+            logger.d('emitting state $newState');
             emit(newState);
             break;
           case (const (ApiKeyEntered)):

@@ -29,30 +29,30 @@ void main() {
 
     test('addFavourite should add article to favourites', () {
       final article = Article(
-          source: const {"source": "Test"},
-          author: "Author McAuthorson",
-          title: "TestTitle",
-          description: "TestDescription",
-          url: "https://abc.com/",
+          source: const {'source': 'Test'},
+          author: 'Author McAuthorson',
+          title: 'TestTitle',
+          description: 'TestDescription',
+          url: 'https://abc.com/',
           urlToImage:
-              "https://almadeladanza.ru/wp-content/uploads/b/b/c/bbc2ecc9cde1018cf1c4beaefa945f21.png",
+              'https://almadeladanza.ru/wp-content/uploads/b/b/c/bbc2ecc9cde1018cf1c4beaefa945f21.png',
           publishedAt: DateTime(2024, 3, 31, 0, 0),
-          content: "This is a test article. Nothing more, nothing less.");
+          content: 'This is a test article. Nothing more, nothing less.');
       favouriteCubit.addFavourite(article);
       expect(favouriteCubit.state.articles, contains(article));
     });
 
     test('removeFavourite should remove article from favourites', () {
       final article = Article(
-          source: const {"source": "Test"},
-          author: "Author McAuthorson",
-          title: "TestTitle",
-          description: "TestDescription",
-          url: "https://abc.com/",
+          source: const {'source': 'Test'},
+          author: 'Author McAuthorson',
+          title: 'TestTitle',
+          description: 'TestDescription',
+          url: 'https://abc.com/',
           urlToImage:
-              "https://almadeladanza.ru/wp-content/uploads/b/b/c/bbc2ecc9cde1018cf1c4beaefa945f21.png",
+              'https://almadeladanza.ru/wp-content/uploads/b/b/c/bbc2ecc9cde1018cf1c4beaefa945f21.png',
           publishedAt: DateTime(2024, 3, 31, 0, 0),
-          content: "This is a test article. Nothing more, nothing less.");
+          content: 'This is a test article. Nothing more, nothing less.');
       favouriteCubit.addFavourite(article);
       favouriteCubit.removeFavourite(article);
       expect(favouriteCubit.state.articles, isNot(contains(article)));
@@ -62,15 +62,15 @@ void main() {
         'toggleFavourite should add article to favourites if not already favourited',
         () {
       final article = Article(
-          source: const {"source": "Test"},
-          author: "Author McAuthorson",
-          title: "TestTitle",
-          description: "TestDescription",
-          url: "https://abc.com/",
+          source: const {'source': 'Test'},
+          author: 'Author McAuthorson',
+          title: 'TestTitle',
+          description: 'TestDescription',
+          url: 'https://abc.com/',
           urlToImage:
-              "https://almadeladanza.ru/wp-content/uploads/b/b/c/bbc2ecc9cde1018cf1c4beaefa945f21.png",
+              'https://almadeladanza.ru/wp-content/uploads/b/b/c/bbc2ecc9cde1018cf1c4beaefa945f21.png',
           publishedAt: DateTime(2024, 3, 31, 0, 0),
-          content: "This is a test article. Nothing more, nothing less.");
+          content: 'This is a test article. Nothing more, nothing less.');
       favouriteCubit.toggleFavourite(article);
       expect(favouriteCubit.state.articles, contains(article));
     });
@@ -79,15 +79,15 @@ void main() {
         'toggleFavourite should remove article from favourites if already favourited',
         () {
       final article = Article(
-          source: const {"source": "Test"},
-          author: "Author McAuthorson",
-          title: "TestTitle",
-          description: "TestDescription",
-          url: "https://abc.com/",
+          source: const {'source': 'Test'},
+          author: 'Author McAuthorson',
+          title: 'TestTitle',
+          description: 'TestDescription',
+          url: 'https://abc.com/',
           urlToImage:
-              "https://almadeladanza.ru/wp-content/uploads/b/b/c/bbc2ecc9cde1018cf1c4beaefa945f21.png",
+              'https://almadeladanza.ru/wp-content/uploads/b/b/c/bbc2ecc9cde1018cf1c4beaefa945f21.png',
           publishedAt: DateTime(2024, 3, 31, 0, 0),
-          content: "This is a test article. Nothing more, nothing less.");
+          content: 'This is a test article. Nothing more, nothing less.');
       favouriteCubit.addFavourite(article);
       favouriteCubit.toggleFavourite(article);
       expect(favouriteCubit.state.articles, isNot(contains(article)));
@@ -95,25 +95,25 @@ void main() {
 
     test('clearFavourites should remove all articles from favourites', () {
       final article1 = Article(
-          source: const {"source": "Test"},
-          author: "Author McAuthorson",
-          title: "TestTitle1",
-          description: "TestDescription1",
-          url: "https://abc.com/",
+          source: const {'source': 'Test'},
+          author: 'Author McAuthorson',
+          title: 'TestTitle1',
+          description: 'TestDescription1',
+          url: 'https://abc.com/',
           urlToImage:
-              "https://almadeladanza.ru/wp-content/uploads/b/b/c/bbc2ecc9cde1018cf1c4beaefa945f21.png",
+              'https://almadeladanza.ru/wp-content/uploads/b/b/c/bbc2ecc9cde1018cf1c4beaefa945f21.png',
           publishedAt: DateTime(2024, 3, 31, 0, 0),
-          content: "This is a test article. Nothing more, nothing less.");
+          content: 'This is a test article. Nothing more, nothing less.');
       final article2 = Article(
-          source: const {"source": "Test"},
-          author: "Author McAuthorson",
-          title: "TestTitle2",
-          description: "TestDescription2",
-          url: "https://abc.com/",
+          source: const {'source': 'Test'},
+          author: 'Author McAuthorson',
+          title: 'TestTitle2',
+          description: 'TestDescription2',
+          url: 'https://abc.com/',
           urlToImage:
-              "https://almadeladanza.ru/wp-content/uploads/b/b/c/bbc2ecc9cde1018cf1c4beaefa945f21.png",
+              'https://almadeladanza.ru/wp-content/uploads/b/b/c/bbc2ecc9cde1018cf1c4beaefa945f21.png',
           publishedAt: DateTime(2024, 3, 31, 0, 0),
-          content: "This is a test article. Nothing more, nothing less.");
+          content: 'This is a test article. Nothing more, nothing less.');
       favouriteCubit.addFavourite(article1);
       favouriteCubit.addFavourite(article2);
       favouriteCubit.clearFavourites();

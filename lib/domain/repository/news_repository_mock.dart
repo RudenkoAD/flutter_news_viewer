@@ -3,21 +3,21 @@ import 'package:flutter_news_viewer/domain/repository/news_repository.dart';
 
 mockArticles() => [
       Article(
-          source: const {"source": "Test"},
-          author: "Author McAuthorson",
-          title: "TestTitle",
-          description: "TestDescription",
-          url: "https://abc.com/",
+          source: const {'source': 'Test'},
+          author: 'Author McAuthorson',
+          title: 'TestTitle',
+          description: 'TestDescription',
+          url: 'https://abc.com/',
           urlToImage:
-              "https://almadeladanza.ru/wp-content/uploads/b/b/c/bbc2ecc9cde1018cf1c4beaefa945f21.png",
+              'https://almadeladanza.ru/wp-content/uploads/b/b/c/bbc2ecc9cde1018cf1c4beaefa945f21.png',
           publishedAt: DateTime(2024, 3, 31, 0, 0),
-          content: "This is a test article. Nothing more, nothing less."),
+          content: 'This is a test article. Nothing more, nothing less.'),
       Article(
-          source: const {"source": "Test"},
+          source: const {'source': 'Test'},
           author: null,
-          title: "NullTestTitle",
+          title: 'NullTestTitle',
           description: null,
-          url: "https://abc.com/",
+          url: 'https://abc.com/',
           urlToImage: null,
           publishedAt: DateTime(2024, 3, 31, 0, 0),
           content: null)

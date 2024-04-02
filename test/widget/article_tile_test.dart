@@ -25,10 +25,10 @@ void main() {
         child: MaterialApp(
       home: ArticleTile(
           article: Article(
-              source: const {"source": "Test"},
-              title: "Article Title",
-              description: "Article Description",
-              url: "https://abc.com/",
+              source: const {'source': 'Test'},
+              title: 'Article Title',
+              description: 'Article Description',
+              url: 'https://abc.com/',
               publishedAt: DateTime(2024, 3, 31, 0, 0))),
     )));
     // Verify that our widget has the correct title and description.

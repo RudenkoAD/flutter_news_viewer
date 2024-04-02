@@ -70,7 +70,7 @@ final class PageState extends Equatable {
   final int page;
 
   const PageState(
-      {this.apiKey = "4fe40c4277a54c70ab601aa41bbad727",
+      {this.apiKey = '4fe40c4277a54c70ab601aa41bbad727',
       this.status = PostStatus.initial,
       this.articles = const <Article>[],
       this.country = 'us',

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_single_quotes
+
 import 'package:flutter_news_viewer/domain/model/article.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_news_viewer/logger.dart';
