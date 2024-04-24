@@ -8,6 +8,12 @@ class Filter{
 
   Filter._();
 
+  Filter setKeywords(List<String> keywords){
+    _keywords.clear();
+    _keywords.addAll(keywords);
+    return this;
+  }
+
   bool test(Article article) {
     for (var keyword in _keywords) {
       if (!article.title.toLowerCase().contains(keyword)) {
@@ -67,7 +73,9 @@ class Filter{
     return this;
   }
 
-  factory Filter.all() = Filter._;
+  factory Filter.all(){
+    return Filter._();
+  }
 
   Filter reset(){
     _keywords.clear();

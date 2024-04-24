@@ -27,6 +27,15 @@ final class FilterModified extends PageEvent {
   List<Object> get props => [filter];
 }
 
+final class FilterModifiedKeywords extends PageEvent {
+  final String keywords;
+
+  const FilterModifiedKeywords(this.keywords);
+
+  @override
+  List<Object> get props => [keywords];
+}
+
 final class PageCountryChanged extends PageEvent {
   final String country;
 
