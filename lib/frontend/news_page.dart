@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+//import 'package:sliver_tools/sliver_tools.dart';
 import 'package:flutter_news_viewer/domain/bloc/page_bloc.dart';
 import 'package:flutter_news_viewer/frontend/common.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -8,16 +9,19 @@ class NewsPage extends StatelessWidget {
   const NewsPage({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Top Headlines'),
+    return const Scaffold(
+      body: 
+      CustomScrollView(
+        slivers: [
+          SliverAppBar(
+        title: Text('Top Headlines'),
+        floating: true,
+        flexibleSpace: Placeholder(),
+        expandedHeight: 20,
       ),
-      body: const Stack(
-        children: [
-          Center(child: ArticleList()),
-          Center(child: Overlay()),
-        ],
-      ),
+      ArticleList(),
+        ]
+      )
     );
   }
 }
@@ -31,18 +35,27 @@ class ArticleList extends ConsumerWidget {
       builder: (context, watch, _) {
         final state = ref.watch(pageProvider);
         if (state.status == PostStatus.initial) {
-          return const CircularProgressIndicator();
+          return const SliverToBoxAdapter(child: CircularProgressIndicator());
         } else if (state.status == PostStatus.success) {
           if (state.articles.isEmpty) {
-            return const Center(child: Text('No articles found'));
+            return const SliverToBoxAdapter(child: Center(child: Text('No articles found')));
           }
-          return ListView.builder(
+          return SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                final article = state.articles[index];
+                return ArticleTile(article: article);
+              },
+              childCount: state.articles.length,
+            ),
+          );
+          /*ListView.builder(
             itemCount: state.articles.length,
             itemBuilder: (context, index) {
               final article = state.articles[index];
               return ArticleTile(article: article);
             },
-          );
+          );*/
         } else {
           return const Text('Something went wrong!');
         }
