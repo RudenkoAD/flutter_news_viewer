@@ -18,6 +18,15 @@ final class PageNumberDecremented extends PageEvent {
   const PageNumberDecremented();
 }
 
+final class FilterModified extends PageEvent {
+  final Filter filter;
+
+  const FilterModified(this.filter);
+
+  @override
+  List<Object> get props => [filter];
+}
+
 final class PageCountryChanged extends PageEvent {
   final String country;
 

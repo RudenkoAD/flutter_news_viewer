@@ -5,7 +5,7 @@ import 'package:flutter_news_viewer/domain/repository/news_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_news_viewer/logger.dart';
 import 'package:get_it/get_it.dart';
-
+import 'package:flutter_news_viewer/domain/model/filter.dart';
 part 'page_state.dart';
 part 'page_event.dart';
 
@@ -48,6 +48,10 @@ class PageBloc extends Bloc<PageEvent, PageState> {
                 .d('ApiKeyEntered, apiKey: ${(event as ApiKeyEntered).apiKey}');
             emit(state.copyWith(apiKey: (event).apiKey));
             break;
+          case (const (FilterModified)):
+            logger.d('FilterModified, filter: ${(event as FilterModified).filter}');
+            emit(state.copyWith(filter: (event).filter));
+            break;
         }
       } catch (_) {
         emit(state.copyWith(status: PostStatus.failure));
@@ -66,6 +70,7 @@ class PageBloc extends Bloc<PageEvent, PageState> {
           pageSize: newstate.pageSize,
           page: newstate.page);
       logger.i('bloc got ${articles.length} articles from newsapi.org');
+      articles.where((element) => (state.filter != null) ? state.filter!.test(element) : true);
       return articles;
     } catch (e) {
       logger.e('bloc failed to get articles: $e');
