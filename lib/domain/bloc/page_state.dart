@@ -93,15 +93,16 @@ final class PageState extends Equatable {
     Filter? filter,
   }) {
     return PageState(
-        apiKey: apiKey ?? this.apiKey,
-        status: status ?? this.status,
-        articles: articles ?? this.articles,
-        country: country ?? this.country,
-        category: category ?? this.category,
-        q: q ?? this.q,
-        pageSize: pageSize ?? this.pageSize,
-        page: page ?? this.page,
-        filter: filter ?? this.filter,);
+      apiKey: apiKey ?? this.apiKey,
+      status: status ?? this.status,
+      articles: articles ?? this.articles,
+      country: country ?? this.country,
+      category: category ?? this.category,
+      q: q ?? this.q,
+      pageSize: pageSize ?? this.pageSize,
+      page: page ?? this.page,
+      filter: filter ?? this.filter,
+    );
   }
 
   @override

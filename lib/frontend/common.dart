@@ -23,9 +23,11 @@ class ArticleTile extends ConsumerWidget {
               leading: SizedBox(
                 width: 100,
                 height: 100,
-                child: article.urlToImage == null
-                    ? const ImageIcon(AssetImage('assets/placeholder.png'))
-                    : Image.network(article.urlToImage!),
+                child: Hero(
+                    tag: 'article_image_${article.title}',
+                    child: article.urlToImage == null
+                        ? const ImageIcon(AssetImage('assets/placeholder.png'))
+                        : Image.network(article.urlToImage!)),
               ),
               title: Text(
                 article.title,
@@ -39,6 +41,7 @@ class ArticleTile extends ConsumerWidget {
                   color: ref.watch(favouriteProvider).isFavourite(article)
                       ? Colors.red
                       : null,
+                  size: 30,
                 ),
                 onPressed: () {
                   ref.read(favouriteProvider.bloc).toggleFavourite(article);

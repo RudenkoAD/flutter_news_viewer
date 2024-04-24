@@ -3,6 +3,7 @@ import 'package:flutter_news_viewer/frontend/article_page.dart';
 import 'package:flutter_news_viewer/frontend/home_page.dart';
 import 'package:flutter_news_viewer/frontend/news_page.dart';
 import 'package:flutter_news_viewer/frontend/favourite_page.dart';
+import 'package:flutter_news_viewer/frontend/article_webview.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_news_viewer/domain/bloc/provider.dart';
 
@@ -20,6 +21,7 @@ class App extends ConsumerWidget {
           '/article': (context) => const ArticlePage(),
           '/home': (context) => const HomePage(),
           '/favourite': (context) => const FavouritePage(),
+          '/webview': (context) => ArticleWebView(),
         });
   }
 }

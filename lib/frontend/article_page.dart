@@ -20,9 +20,11 @@ class ArticlePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              article.urlToImage != null
-                  ? Image.network(article.urlToImage!)
-                  : const ImageIcon(AssetImage('assets/placeholder.png')),
+              Hero(
+                  tag: 'article_image_${article.title}',
+                  child: article.urlToImage != null
+                      ? Image.network(article.urlToImage!)
+                      : const ImageIcon(AssetImage('assets/placeholder.png'))),
               const SizedBox(height: 16),
               Text(article.title,
                   style: Theme.of(context).textTheme.titleLarge),
@@ -32,6 +34,21 @@ class ArticlePage extends StatelessWidget {
               const SizedBox(height: 16),
               Text(article.content ?? 'No content available',
                   style: Theme.of(context).textTheme.bodySmall),
+              const SizedBox(height: 16),
+              GestureDetector(
+                child: Card(
+                  elevation: 1,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  child: Text('view full article',
+                      style: Theme.of(context).textTheme.bodySmall),
+                ),
+                onTap: () {
+                  Navigator.pushNamed(context, '/webview',
+                      arguments: article.url);
+                },
+              ),
             ],
           ),
         ),
