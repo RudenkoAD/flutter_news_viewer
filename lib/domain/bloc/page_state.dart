@@ -68,6 +68,7 @@ final class PageState extends Equatable {
   final String? q;
   final int pageSize;
   final int page;
+  final Filter? filter;
 
   const PageState(
       {this.apiKey = '4fe40c4277a54c70ab601aa41bbad727',
@@ -77,7 +78,8 @@ final class PageState extends Equatable {
       this.category,
       this.q,
       this.pageSize = 20,
-      this.page = 1});
+      this.page = 1,
+      this.filter});
 
   PageState copyWith({
     String? apiKey,
@@ -88,6 +90,7 @@ final class PageState extends Equatable {
     String? q,
     int? pageSize,
     int? page,
+    Filter? filter,
   }) {
     return PageState(
         apiKey: apiKey ?? this.apiKey,
@@ -97,10 +100,11 @@ final class PageState extends Equatable {
         category: category ?? this.category,
         q: q ?? this.q,
         pageSize: pageSize ?? this.pageSize,
-        page: page ?? this.page);
+        page: page ?? this.page,
+        filter: filter ?? this.filter,);
   }
 
   @override
   List<Object?> get props =>
-      [apiKey, status, articles, country, category, q, pageSize, page];
+      [apiKey, status, articles, country, category, q, pageSize, page, filter];
 }

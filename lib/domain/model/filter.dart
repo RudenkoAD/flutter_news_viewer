@@ -5,6 +5,7 @@ class Filter{
   String _author = '';
   DateTime _from = DateTime(2000);
   DateTime _to = DateTime.now();
+
   Filter._();
 
   bool test(Article article) {
@@ -66,9 +67,7 @@ class Filter{
     return this;
   }
 
-  factory Filter.all(){
-    return Filter._();
-  }
+  factory Filter.all() = Filter._;
 
   Filter reset(){
     _keywords.clear();
