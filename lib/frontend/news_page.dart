@@ -12,7 +12,7 @@ class NewsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: CustomScrollView(slivers: [
-      SliverAppBar(
+      const SliverAppBar(
         floating: true,
         flexibleSpace: Placeholder(),
         expandedHeight: 20,
