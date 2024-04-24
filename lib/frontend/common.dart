@@ -41,7 +41,7 @@ class ArticleTile extends ConsumerWidget {
                   color: ref.watch(favouriteProvider).isFavourite(article)
                       ? Colors.red
                       : null,
-                    size: 30,
+                  size: 30,
                 ),
                 onPressed: () {
                   ref.read(favouriteProvider.bloc).toggleFavourite(article);

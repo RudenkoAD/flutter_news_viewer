@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_viewer/domain/model/article.dart';
 import 'package:flutter_news_viewer/frontend/article_page_arguments.dart';
+
 class ArticlePage extends StatelessWidget {
   const ArticlePage({super.key});
   @override
@@ -41,7 +42,7 @@ class ArticlePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   child: Text('view full article',
-                      style: Theme.of(context).textTheme.bodySmall), 
+                      style: Theme.of(context).textTheme.bodySmall),
                 ),
                 onTap: () {
                   Navigator.pushNamed(context, '/webview',

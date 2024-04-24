@@ -49,15 +49,18 @@ class PageBloc extends Bloc<PageEvent, PageState> {
             emit(state.copyWith(apiKey: (event).apiKey));
             break;
           case (const (FilterModified)):
-            logger.d('FilterModified, filter: ${(event as FilterModified).filter}');
+            logger.d(
+                'FilterModified, filter: ${(event as FilterModified).filter}');
             final newState = state.copyWith(filter: event.filter);
             final newArticles = await _getArticles(event, emit, newState);
             emit(newState.copyWith(
                 articles: newArticles, status: PostStatus.success));
             break;
           case (const (FilterModifiedKeywords)):
-            logger.d('FilterModifiedKeywords, keywords: ${(event as FilterModifiedKeywords).keywords}');
-            final newfilter = (state.filter??Filter.all()).setKeywords((event).keywords.toLowerCase().split(' '));
+            logger.d(
+                'FilterModifiedKeywords, keywords: ${(event as FilterModifiedKeywords).keywords}');
+            final newfilter = (state.filter ?? Filter.all())
+                .setKeywords((event).keywords.toLowerCase().split(' '));
             final newState = state.copyWith(filter: newfilter);
             final newArticles = await _getArticles(event, emit, newState);
             emit(newState.copyWith(
@@ -82,7 +85,9 @@ class PageBloc extends Bloc<PageEvent, PageState> {
           pageSize: newstate.pageSize,
           page: newstate.page);
       logger.i('bloc got ${articles.length} articles from newsapi.org');
-      return articles.where((element) => state.filter?.test(element)??true).toList();
+      return articles
+          .where((element) => state.filter?.test(element) ?? true)
+          .toList();
     } catch (e) {
       logger.e('bloc failed to get articles: $e');
       return [];

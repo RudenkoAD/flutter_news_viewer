@@ -11,15 +11,16 @@ class NewsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: 
-      CustomScrollView(slivers: [
-        SliverAppBar(
-          floating: true,
-          flexibleSpace: Placeholder(),
-          expandedHeight: 20,
-          title: FilterUI(),
-        ),
-        SliverStack(children: const <Widget>[ArticleList(),SliverPositioned.fill(child: Overlay()),
+        body: CustomScrollView(slivers: [
+      SliverAppBar(
+        floating: true,
+        flexibleSpace: Placeholder(),
+        expandedHeight: 20,
+        title: FilterUI(),
+      ),
+      SliverStack(children: const <Widget>[
+        ArticleList(),
+        SliverPositioned.fill(child: Overlay()),
       ]),
     ]));
   }
