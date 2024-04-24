@@ -1,4 +1,4 @@
-name: Tests
+name: Analyze
 
 on:
   push:
@@ -17,10 +17,4 @@ jobs:
         with:
           flutter-version: '3.19.0'
           channel: 'stable'
-      - run: flutter --version
-
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Run tests
-        run: flutter test
+      - run: flutter analyze --fatal-infos

@@ -65,7 +65,6 @@ class PageBloc extends Bloc<PageEvent, PageState> {
             final newArticles = await _getArticles(event, emit, newState);
             emit(newState.copyWith(
                 articles: newArticles, status: PostStatus.success));
-
             break;
         }
       } catch (_) {
